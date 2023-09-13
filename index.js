@@ -83,16 +83,16 @@ while (true) {
   
     switch (opcao) {
       case 1:
-        cadastrarDoador();
+        cadastrarDoador()
         break;
       case 2:
-        listarDoadores();
+        listarDoadores()
         break;
       case 3:
-        buscarTipoSangue();
+        buscarTipoSangue()
         break;
       case 4:
-        buscarPorData();
+        buscarPorData()
         break;
       case 5:
         // Sair
