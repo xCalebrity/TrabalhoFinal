@@ -24,6 +24,10 @@ function cadastrarDoador() {
 
 // Função para listar todos os doadores
 function listarDoadores() {
+
+  let legenda = `hhnjn 
+  
+  `
     console.log("--------------------");
     console.log("LISTAGEM DE DOADORES:");
     console.log("--------------------");
@@ -35,10 +39,11 @@ function listarDoadores() {
         console.log("-----------------------------------------------------------------");
         
         for (const doador of doadores) {
-            console.log(`${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}`);
+         legenda += `${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}`;
         }
         
-        console.log("-----------------------------------------------------------------\n");
+        legenda += "-----------------------------------------------------------------\n";
+        prompt(legenda)
     }
 }
 
@@ -68,8 +73,35 @@ function buscarTipoSangue() {
     }
 }
 
+// Função para buscar doadores por data da última doação
+function buscarPorData() {
+  console.log("===== BUSCA POR DATA DA ÚLTIMA DOAÇÃO =====");
+  const dataBusca = prompt("Digite a data desejada (dd/mm/aaaa): ");
+  let encontrouDoador = false;
+
+  console.log("------------------------");
+  console.log("RESULTADO DA BUSCA:");
+  console.log("------------------------");
+  console.log("NOME             | IDADE | PESO | TIPO SANGUÍNEO | ÚLTIMA DOAÇÃO");
+  console.log("-----------------------------------------------------------------");
+
+  for (const doador of doadores) {
+      if (doador.dataUltimaDoacao === dataBusca) {
+          console.log(`${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}`);
+          encontrouDoador = true;
+      }
+  }
+
+  if (!encontrouDoador) {
+      console.log("Nenhum doador com a data de última doação desejada encontrado.\n");
+  } else {
+      console.log("-----------------------------------------------------------------\n");
+  }
+}
+
 // Loop principal do programa
-while (true) {
+function menu() {
+  while(true){
     const opcao = Number(
       prompt(`
       ===== SISTEMA DE CADASTRO DE DOADORES DE SANGUE =====
@@ -84,26 +116,22 @@ while (true) {
     switch (opcao) {
       case 1:
         cadastrarDoador()
-        break;
+        break
       case 2:
         listarDoadores()
-        break;
+        break
       case 3:
         buscarTipoSangue()
-        break;
+        break
       case 4:
         buscarPorData()
-        break;
+        break
       case 5:
         // Sair
-        break;
+        break
       default:
-        alert("Opção inválida. Tente novamente.");
-        menu();
+        alert("Opção inválida. Tente novamente.")
     }
   }
-
-  menu()    
-
-
-
+}
+  menu()
