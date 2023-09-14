@@ -3,12 +3,12 @@ const doadores = [];
 
 // Função para cadastrar um doador
 function cadastrarDoador() {
-    console.log("===== CADASTRO DE DOADOR =====");
-    const nome = prompt("Nome: ");
-    const idade = parseInt(prompt("Idade: "));
-    const peso = parseFloat(prompt("Peso (kg): "));
-    const tipoSanguineo = prompt("Tipo Sanguíneo: ");
-    const dataUltimaDoacao = prompt("Data da Última Doação (dd/mm/aaaa): ");
+    alert("===== CADASTRO DE DOADOR =====")
+    const nome = prompt("Nome: ")
+    const idade = parseInt(prompt("Idade: "))
+    const peso = parseFloat(prompt("Peso (kg): "))
+    const tipoSanguineo = prompt("Tipo Sanguíneo: ").toLowerCase()
+    const dataUltimaDoacao = prompt("Data da Última Doação (dd/mm/aaaa): ")
 
     const doador = {
         nome,
@@ -18,100 +18,101 @@ function cadastrarDoador() {
         dataUltimaDoacao
     };
 
-    doadores.push(doador);
-    console.log("Doador cadastrado com sucesso!\n");
+    doadores.push(doador)
+    alert("Doador cadastrado com sucesso!\n")
 }
 
 // Função para listar todos os doadores
 function listarDoadores() {
+    let mensagem = "------------------------\n"
+    mensagem += "LISTAGEM DE DOADORES:\n"
+    mensagem += "------------------------\n"
 
-  let legenda = `hhnjn 
-  
-  `
-    console.log("--------------------");
-    console.log("LISTAGEM DE DOADORES:");
-    console.log("--------------------");
-    
     if (doadores.length === 0) {
-        console.log("Nenhum doador cadastrado.\n");
+        mensagem += "Nenhum doador cadastrado.\n"
     } else {
-        console.log("NOME             | IDADE | PESO | TIPO SANGUÍNEO | ÚLTIMA DOAÇÃO");
-        console.log("-----------------------------------------------------------------");
-        
+        mensagem += "NOME             | IDADE | PESO | TIPO SANGUÍNEO | ÚLTIMA DOAÇÃO\n"
+        mensagem += "-----------------------------------------------------------------\n"
+
         for (const doador of doadores) {
-         legenda += `${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}`;
+            mensagem += `${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}\n`
         }
-        
-        legenda += "-----------------------------------------------------------------\n";
-        prompt(legenda)
+
+        mensagem += "-----------------------------------------------------------------\n"
     }
+
+    alert(mensagem)
 }
 
 // Função para buscar doadores por tipo sanguíneo
 function buscarTipoSangue() {
-    console.log("===== BUSCA POR TIPO SANGUÍNEO =====");
-    const tipoSanguineoBusca = prompt("Digite o tipo sanguíneo desejado: ");
-    let encontrouDoador = false;
+    alert("===== BUSCA POR TIPO SANGUÍNEO =====")
+    const tipoSanguineoBusca = prompt("Digite o tipo sanguíneo desejado: ").toLowerCase()
+    let encontrouDoador = false
 
-    console.log("------------------------");
-    console.log("RESULTADO DA BUSCA:");
-    console.log("------------------------");
-    console.log("NOME             | IDADE | PESO | TIPO SANGUÍNEO | ÚLTIMA DOAÇÃO");
-    console.log("-----------------------------------------------------------------");
+    let mensagem = "------------------------\n"
+    mensagem += "RESULTADO DA BUSCA:\n"
+    mensagem += "------------------------\n"
+    mensagem += "NOME             | IDADE | PESO | TIPO SANGUÍNEO | ÚLTIMA DOAÇÃO\n"
+    mensagem += "-----------------------------------------------------------------\n"
 
     for (const doador of doadores) {
         if (doador.tipoSanguineo === tipoSanguineoBusca) {
-            console.log(`${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}`);
-            encontrouDoador = true;
+            mensagem += `${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}\n`
+            encontrouDoador = true
         }
     }
 
     if (!encontrouDoador) {
-        console.log("Nenhum doador com o tipo sanguíneo desejado encontrado.\n");
+        mensagem += "Nenhum doador com o tipo sanguíneo desejado encontrado.\n"
     } else {
-        console.log("-----------------------------------------------------------------\n");
+        mensagem += "-----------------------------------------------------------------\n"
     }
+
+    alert(mensagem)
 }
 
 // Função para buscar doadores por data da última doação
 function buscarPorData() {
-  console.log("===== BUSCA POR DATA DA ÚLTIMA DOAÇÃO =====");
-  const dataBusca = prompt("Digite a data desejada (dd/mm/aaaa): ");
-  let encontrouDoador = false;
+    alert("===== BUSCA POR DATA DA ÚLTIMA DOAÇÃO =====")
+    const dataBusca = prompt("Digite a data desejada (dd/mm/aaaa): ")
+    let encontrouDoador = false
 
-  console.log("------------------------");
-  console.log("RESULTADO DA BUSCA:");
-  console.log("------------------------");
-  console.log("NOME             | IDADE | PESO | TIPO SANGUÍNEO | ÚLTIMA DOAÇÃO");
-  console.log("-----------------------------------------------------------------");
+    let mensagem = "------------------------\n"
+    mensagem += "RESULTADO DA BUSCA:\n"
+    mensagem += "------------------------\n"
+    mensagem += "NOME             | IDADE | PESO | TIPO SANGUÍNEO | ÚLTIMA DOAÇÃO\n"
+    mensagem += "-----------------------------------------------------------------\n"
 
-  for (const doador of doadores) {
-      if (doador.dataUltimaDoacao === dataBusca) {
-          console.log(`${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}`);
-          encontrouDoador = true;
-      }
+    for (const doador of doadores) {
+        if (doador.dataUltimaDoacao === dataBusca) {
+            mensagem += `${doador.nome.padEnd(16)}| ${doador.idade.toString().padEnd(6)}| ${doador.peso.toString().padEnd(5)}| ${doador.tipoSanguineo.padEnd(15)}| ${doador.dataUltimaDoacao}\n`
+            encontrouDoador = true
+        }
+    }
+
+    if (!encontrouDoador) {
+        mensagem += "Nenhum doador com a data de última doação desejada encontrado.\n"
+    } else {
+        mensagem += "-----------------------------------------------------------------\n"
+   
+
   }
-
-  if (!encontrouDoador) {
-      console.log("Nenhum doador com a data de última doação desejada encontrado.\n");
-  } else {
-      console.log("-----------------------------------------------------------------\n");
-  }
+  alert(mensagem)
 }
 
 // Loop principal do programa
 function menu() {
   while(true){
     const opcao = Number(
-      prompt(`
-      ===== SISTEMA DE CADASTRO DE DOADORES DE SANGUE =====
+      prompt(`===== SISTEMA DE CADASTRO DE DOADORES DE SANGUE =====
       1. Cadastrar doador
       2. Listar doadores
       3. Buscar doador por tipo sanguíneo
       4. Buscar doador por data da última doação
       5. Sair
       Escolha uma opção:`)
-    );
+    )
   
     switch (opcao) {
       case 1:
